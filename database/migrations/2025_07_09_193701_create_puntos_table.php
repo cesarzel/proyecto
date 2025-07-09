@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('puntos', function (Blueprint $table) {
             $table->id();
+            $table->string("nombre");
+            $table->string("capacidad");
+            $table->string("responsable");
+            $table->string("latitud");
+            $table->string("longitud");
             $table->timestamps();
         });
     }
