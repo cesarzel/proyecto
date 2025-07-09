@@ -16,3 +16,6 @@ Route::get('/puntos/mapa',[PuntoController::class,'mapa']);
 //habilitando acceso al controlador 
 Route::resource('puntos',PuntoController::class);
 
+Route::get('/puntos/template', function () {
+    return view('puntos.mytemplate');
+});
