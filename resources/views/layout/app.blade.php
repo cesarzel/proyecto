@@ -86,8 +86,10 @@
                 <a href="{{ url('/punto/template') }}" class="nav-item nav-link active">Home</a>
                 <a href="{{ route('puntos.index') }}" class="nav-item nav-link">Puntos Comuni.</a>
                 <a href="{{ url('/puntos/mapa') }}" class="nav-item nav-link active">Mapa Puntos</a>
-                <a href="{{ route('riesgos.index') }}" class="nav-item nav-link">Zonas de Riesgo.</a>
+                <a href="{{ route('riesgos.index') }}" class="nav-item nav-link">Zonas de Riesgo</a>
                 <a href="{{ route('riesgos.mapa') }}" class="nav-item nav-link active">Mapa Z.Riesgo</a>
+                <a href="{{ route('seguras.index') }}" class="nav-item nav-link">Zonas Seguras</a>
+                <a href="{{ route('seguras.mapa') }}" class="nav-item nav-link active">Mapa Z.Segura</a>
             </div>
             <div class="h-100 d-lg-inline-flex align-items-center d-none">
                 <a class="btn btn-square rounded-circle bg-light text-primary me-2" href=""><i class="fab fa-facebook-f"></i></a>
