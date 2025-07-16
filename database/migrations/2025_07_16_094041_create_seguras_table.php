@@ -13,7 +13,13 @@ return new class extends Migration
     {
         Schema::create('seguras', function (Blueprint $table) {
             $table->id();
+            $table->string('nombre');
+            $table->enum('tipo_seguridad', ['PUBLICA', 'PRIVADA']);
+            $table->double('radio'); // en metros
+            $table->double('latitud', 10, 7);  // coordenada central
+            $table->double('longitud', 10, 7); // coordenada central
             $table->timestamps();
+
         });
     }
 
