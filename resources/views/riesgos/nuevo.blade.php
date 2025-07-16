@@ -9,13 +9,13 @@
             <h3><b>Registrar Zona de Riesgo</b></h3>
             <hr>
 
-            <label for=""><b>Nombre:</b></label>
-            <input type="text" name="nombre" id="nombre" placeholder="Ej. Zona Roja" required class="form-control"><br>
+            <label><b>Nombre:</b></label>
+            <input type="text" name="nombre" id="nombre" required class="form-control" placeholder="Ej. Zona Roja"><br>
 
-            <label for=""><b>Descripción:</b></label>
+            <label><b>Descripción:</b></label>
             <textarea name="descripcion" id="descripcion" class="form-control" rows="3" placeholder="Detalles de la zona..."></textarea><br>
 
-            <label for=""><b>Nivel de Riesgo:</b></label>
+            <label><b>Nivel de Riesgo:</b></label>
             <select name="nivel_riesgo" class="form-control" required>
                 <option value="">-- Seleccione --</option>
                 <option value="bajo">Bajo</option>
@@ -28,9 +28,9 @@
                 <div class="col-md-5">
                     <label><b>COORDENADA N° {{ $i }}</b></label><br>
                     <label>Latitud:</label>
-                    <input type="number" name="latitud{{ $i }}" id="latitud{{ $i }}" class="form-control" step="any" readonly placeholder="Seleccione..."><br>
+                    <input type="number" name="latitud{{ $i }}" id="latitud{{ $i }}" class="form-control" readonly placeholder="Seleccione..."><br>
                     <label>Longitud:</label>
-                    <input type="number" name="longitud{{ $i }}" id="longitud{{ $i }}" class="form-control" step="any" readonly placeholder="Seleccione...">
+                    <input type="number" name="longitud{{ $i }}" id="longitud{{ $i }}" class="form-control" readonly placeholder="Seleccione...">
                 </div>
                 <div class="col-md-7">
                     <div id="mapa{{ $i }}" style="height:180px; width:100%; border:2px solid black;"></div>
@@ -56,65 +56,77 @@
     </div>
 </div>
 
-<script>
+<script type="text/javascript">
     let mapaPoligono;
+    const mapas = [];
+    const marcadores = [];
+    let poligonoZona = null;
 
     function initMap() {
-        const centro = { lat: -0.9374805, lng: -78.6161327 };
-
-        mapaPoligono = new google.maps.Map(document.getElementById("mapa-poligono"), {
-            zoom: 15,
-            center: centro,
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-        });
+        const centro = new google.maps.LatLng(-0.9374805, -78.6161327);
 
         for (let i = 1; i <= 4; i++) {
-            const mapaDiv = document.getElementById('mapa' + i);
-            const latInput = document.getElementById('latitud' + i);
-            const lngInput = document.getElementById('longitud' + i);
-
-            const mapa = new google.maps.Map(mapaDiv, {
+            const mapa = new google.maps.Map(document.getElementById('mapa' + i), {
                 center: centro,
                 zoom: 15,
                 mapTypeId: google.maps.MapTypeId.ROADMAP
             });
 
             const marcador = new google.maps.Marker({
-                position: centro,
                 map: mapa,
-                draggable: true,
-                title: "Seleccione la coordenada " + i
+                position: centro,
+                draggable: false
             });
 
-            marcador.addListener('dragend', function () {
-                const pos = marcador.getPosition();
-                latInput.value = pos.lat();
-                lngInput.value = pos.lng();
+            mapas[i] = mapa;
+            marcadores[i] = marcador;
+
+            google.maps.event.addListener(mapa, 'click', function(event) {
+                const lat = event.latLng.lat();
+                const lng = event.latLng.lng();
+
+                marcadores[i].setPosition(event.latLng);
+                document.getElementById(`latitud${i}`).value = lat;
+                document.getElementById(`longitud${i}`).value = lng;
             });
         }
+
+        mapaPoligono = new google.maps.Map(document.getElementById("mapa-poligono"), {
+            zoom: 15,
+            center: centro,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        });
     }
 
     function graficarZona() {
-        const coordenadas = [];
+        const puntos = [];
 
         for (let i = 1; i <= 4; i++) {
-            const lat = parseFloat(document.getElementById('latitud' + i).value);
-            const lng = parseFloat(document.getElementById('longitud' + i).value);
-            if (!isNaN(lat) && !isNaN(lng)) {
-                coordenadas.push({ lat, lng });
+            const lat = parseFloat(document.getElementById(`latitud${i}`).value);
+            const lng = parseFloat(document.getElementById(`longitud${i}`).value);
+
+            if (isNaN(lat) || isNaN(lng)) {
+                alert(`Falta seleccionar la coordenada ${i}`);
+                return;
             }
+
+            puntos.push({ lat, lng });
         }
 
-        const poligono = new google.maps.Polygon({
-            paths: coordenadas,
+        if (poligonoZona) {
+            poligonoZona.setMap(null); // Borra el polígono anterior si existe
+        }
+
+        poligonoZona = new google.maps.Polygon({
+            paths: puntos,
             strokeColor: "#FF0000",
             strokeOpacity: 0.8,
             strokeWeight: 2,
-            fillColor: "#FFAAAA",
+            fillColor: "#00FF00",
             fillOpacity: 0.35
         });
 
-        poligono.setMap(mapaPoligono);
+        poligonoZona.setMap(mapaPoligono);
     }
 </script>
 
