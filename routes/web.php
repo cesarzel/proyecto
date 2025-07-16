@@ -12,7 +12,7 @@ Route::get('/', function () {
 
 // habilitar una ruta especifica para el mapa 
 Route::get('/puntos/mapa',[PuntoController::class,'mapa']);
-Route::get('/riesgos/mapa', [RiesgoController::class, 'mapa']);
+Route::get('/riesgos/mapa', [RiesgoController::class, 'mapa'])->name('riesgos.mapa');
 
 
 //habilitando acceso al controlador 

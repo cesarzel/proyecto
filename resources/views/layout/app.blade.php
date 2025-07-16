@@ -86,18 +86,8 @@
                 <a href="{{ url('/punto/template') }}" class="nav-item nav-link active">Home</a>
                 <a href="{{ route('puntos.index') }}" class="nav-item nav-link">Puntos Comuni.</a>
                 <a href="{{ url('/puntos/mapa') }}" class="nav-item nav-link active">Mapa Puntos</a>
-                <a href="project.html" class="nav-item nav-link">Project</a>
-                <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
-                    <div class="dropdown-menu rounded-0 rounded-bottom m-0">
-                        <a href="feature.html" class="dropdown-item">Feature</a>
-                        <a href="quote.html" class="dropdown-item">Free Quote</a>
-                        <a href="team.html" class="dropdown-item">Our Team</a>
-                        <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-                        <a href="404.html" class="dropdown-item">404 Page</a>
-                    </div>
-                </div>
-                <a href="contact.html" class="nav-item nav-link">Contact</a>
+                <a href="{{ route('riesgos.index') }}" class="nav-item nav-link">Zonas de Riesgo.</a>
+                <a href="{{ route('riesgos.mapa') }}" class="nav-item nav-link active">Mapa Z.Riesgo</a>
             </div>
             <div class="h-100 d-lg-inline-flex align-items-center d-none">
                 <a class="btn btn-square rounded-circle bg-light text-primary me-2" href=""><i class="fab fa-facebook-f"></i></a>
@@ -183,7 +173,7 @@
 
     <!-- Template Javascript -->
     <script src="{{ asset('mytemplate/js/main.js') }}"></script>
-    
+
      <!-- Google Maps -->
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAoJovMIpUACl_dHHWdthfT5n9PIUskRn8=&libraries=places&callback=initMap"></script>
 </body>
