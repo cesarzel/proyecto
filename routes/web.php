@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PuntoController;
+use App\Http\Controllers\RiesgoController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -11,10 +12,12 @@ Route::get('/', function () {
 
 // habilitar una ruta especifica para el mapa 
 Route::get('/puntos/mapa',[PuntoController::class,'mapa']);
+Route::get('/riesgos/mapa', [RiesgoController::class, 'mapa']);
 
 
 //habilitando acceso al controlador 
 Route::resource('puntos',PuntoController::class);
+Route::resource('riesgos', RiesgoController::class);
 
 Route::get('/punto/template', function () {
     return view('puntos.mytemplate');
