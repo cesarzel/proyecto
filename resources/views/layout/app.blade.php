@@ -11,8 +11,7 @@
     <!-- Favicon -->
     <link href="{{ asset('mytemplate/img/favicon.ico') }}" rel="icon">
 
-    <!-- Google Maps -->
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAoJovMIpUACl_dHHWdthfT5n9PIUskRn8=&libraries=places&callback=initMap"></script>
+   
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -85,8 +84,8 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto py-4 py-lg-0">
                 <a href="{{ url('/punto/template') }}" class="nav-item nav-link active">Home</a>
-                <a href="{{ route('puntos.index') }}" class="nav-item nav-link">Puntos Comunitarios</a>
-                <a href="service.html" class="nav-item nav-link">Service</a>
+                <a href="{{ route('puntos.index') }}" class="nav-item nav-link">Puntos Comuni.</a>
+                <a href="{{ url('/puntos/mapa') }}" class="nav-item nav-link active">Mapa Puntos</a>
                 <a href="project.html" class="nav-item nav-link">Project</a>
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
@@ -184,6 +183,9 @@
 
     <!-- Template Javascript -->
     <script src="{{ asset('mytemplate/js/main.js') }}"></script>
+    
+     <!-- Google Maps -->
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAoJovMIpUACl_dHHWdthfT5n9PIUskRn8=&libraries=places&callback=initMap"></script>
 </body>
 
 </html>
