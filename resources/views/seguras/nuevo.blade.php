@@ -38,7 +38,7 @@
 
     <button type="submit" class="btn btn-success">Guardar</button>
     &nbsp;&nbsp;
-    <button type="button" class="btn btn-primary" onclick="graficarCirculo();" data-bs-toggle="modal" data-bs-target="#modalGraficoCirculo">
+    <button type="button" class="btn btn-primary" onclick="prepararDatosCirculo();" data-bs-toggle="modal" data-bs-target="#modalGraficoCirculo">
         Graficar Zona
     </button>
     &nbsp;&nbsp;
@@ -61,8 +61,8 @@
 </div>
 
 <script type="text/javascript">
-    let mapa;
-    let marcador;
+    let mapa, marcador;
+    let datosCirculo = null;
 
     function initMap() {
         const centroInicial = { lat: -0.9374805, lng: -78.6161327 };
@@ -76,56 +76,65 @@
         marcador = new google.maps.Marker({
             position: centroInicial,
             map: mapa,
-            title: "Ubicación de la zona segura",
+            title: "Ubicación de la zona segura"
         });
 
+        // Inicializar valores
         document.getElementById("latitud").value = centroInicial.lat;
         document.getElementById("longitud").value = centroInicial.lng;
 
+        // Cambiar posición con clic
         mapa.addListener('click', function (event) {
             const clickedLatLng = event.latLng;
-
             marcador.setPosition(clickedLatLng);
-
             document.getElementById("latitud").value = clickedLatLng.lat();
             document.getElementById("longitud").value = clickedLatLng.lng();
         });
+
+        // Evento al mostrar el modal (esperar render completo)
+        const modal = document.getElementById('modalGraficoCirculo');
+        modal.addEventListener('shown.bs.modal', function () {
+            if (!datosCirculo) return;
+
+            const centro = new google.maps.LatLng(datosCirculo.lat, datosCirculo.lng);
+
+            const mapaCirculo = new google.maps.Map(document.getElementById('mapa-circulo'), {
+                center: centro,
+                zoom: 15,
+                mapTypeId: google.maps.MapTypeId.SATELLITE
+            });
+
+            new google.maps.Marker({
+                position: centro,
+                map: mapaCirculo,
+                title: "Centro del círculo"
+            });
+
+            new google.maps.Circle({
+                strokeColor: "red",
+                strokeOpacity: 0.8,
+                strokeWeight: 2,
+                fillColor: "blue",
+                fillOpacity: 0.35,
+                map: mapaCirculo,
+                center: centro,
+                radius: datosCirculo.radio
+            });
+        });
     }
 
-    function graficarCirculo() {
+    function prepararDatosCirculo() {
         const radio = parseFloat(document.getElementById('radio').value);
         const lat = parseFloat(document.getElementById('latitud').value);
         const lng = parseFloat(document.getElementById('longitud').value);
 
         if (isNaN(radio) || isNaN(lat) || isNaN(lng)) {
             alert("Completa latitud, longitud y radio para graficar.");
+            datosCirculo = null;
             return;
         }
 
-        const centro = new google.maps.LatLng(lat, lng);
-
-        const mapaCirculo = new google.maps.Map(document.getElementById('mapa-circulo'), {
-            center: centro,
-            zoom: 15,
-            mapTypeId: google.maps.MapTypeId.SATELLITE
-        });
-
-        new google.maps.Marker({
-            position: centro,
-            map: mapaCirculo,
-            title: "Centro del círculo"
-        });
-
-        new google.maps.Circle({
-            strokeColor: "red",
-            strokeOpacity: 0.8,
-            strokeWeight: 2,
-            fillColor: "blue",
-            fillOpacity: 0.35,
-            map: mapaCirculo,
-            center: centro,
-            radius: radio
-        });
+        datosCirculo = { lat, lng, radio };
     }
 </script>
 
