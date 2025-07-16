@@ -11,7 +11,7 @@
         const coordenadaInicial = new google.maps.LatLng(-0.9374805, -78.6161327);
         const mapa = new google.maps.Map(document.getElementById('mapa-espacios'), {
             center: coordenadaInicial,
-            zoom: 10,
+            zoom: 15,
             mapTypeId: google.maps.MapTypeId.ROADMAP
         });
 
@@ -26,6 +26,18 @@
                 },
                 title: "{{ $punto->nombre }} - Capacidad: {{ $punto->capacidad }} - Responsable: {{ $punto->responsable }}",
                 draggable: false
+            });
+            var infoWindow = new google.maps.InfoWindow({
+                content: `
+                    <div style="max-width:200px;">
+                        <strong>{{ $punto->responsable }}</strong><br>
+                        {{ $punto->nombre }}<br>
+                        <em>Capacidad: {{ $punto->capacidad }}</em>
+                    </div>
+                `
+            });
+             marcador.addListener('click', function () {
+                infoWindow.open(mapa, marcador);
             });
         @endforeach
     }

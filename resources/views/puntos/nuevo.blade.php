@@ -53,27 +53,48 @@
 
 <!-- Google Maps script -->
 <script type="text/javascript">
-    function initMap() {
+    let mapa;
+    let marcador;
+
+    window.initMap = function () {
         const coordenadasIniciales = { lat: -0.9374805, lng: -78.6161327 };
 
-        const mapa = new google.maps.Map(document.getElementById("mapa_espacio"), {
-            zoom: 15,
+        // Cargar el mapa
+        mapa = new google.maps.Map(document.getElementById("mapa_espacio"), {
             center: coordenadasIniciales,
-            mapTypeId: google.maps.MapTypeId.ROADMAP,
+            zoom: 15,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
         });
 
-        const marcador = new google.maps.Marker({
+        // Crear un marcador en el centro inicial
+        marcador = new google.maps.Marker({
             position: coordenadasIniciales,
-            map,
+            map: mapa,
             draggable: true,
-            title: "Arrastra para seleccionar ubicación",
+            title: "Ubicación seleccionada"
         });
 
-        marcador.addListener("dragend", function () {
-            const posicion = marcador.getPosition();
-            document.getElementById("latitud").value = posicion.lat();
-            document.getElementById("longitud").value = posicion.lng();
+        // Actualizar campos al mover el marcador
+        marcador.addListener('dragend', function () {
+            const pos = marcador.getPosition();
+            document.getElementById("latitud").value = pos.lat().toFixed(6);
+            document.getElementById("longitud").value = pos.lng().toFixed(6);
         });
-    }
+
+        // Actualizar marcador al hacer clic en el mapa
+        mapa.addListener('click', function (event) {
+            const clickLocation = event.latLng;
+            marcador.setPosition(clickLocation);
+            document.getElementById("latitud").value = clickLocation.lat().toFixed(6);
+            document.getElementById("longitud").value = clickLocation.lng().toFixed(6);
+        });
+
+        // Inicializa valores en los campos con la posición inicial
+        document.getElementById("latitud").value = coordenadasIniciales.lat.toFixed(6);
+        document.getElementById("longitud").value = coordenadasIniciales.lng.toFixed(6);
+    };
 </script>
+
+
+
 @endsection
