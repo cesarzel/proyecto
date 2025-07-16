@@ -9,7 +9,7 @@
     <meta content="" name="description">
 
     <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon">
+    <link href="{{ asset('mytemplate/img/favicon.ico') }}" rel="icon">
 
     <!-- Google Maps -->
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAoJovMIpUACl_dHHWdthfT5n9PIUskRn8=&libraries=places&callback=initMap"></script>
@@ -84,8 +84,8 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto py-4 py-lg-0">
-                <a href="index.html" class="nav-item nav-link active">Home</a>
-                <a href="about.html" class="nav-item nav-link">About</a>
+                <a href="{{ url('/punto/template') }}" class="nav-item nav-link active">Home</a>
+                <a href="{{ route('puntos.index') }}" class="nav-item nav-link">Puntos Comunitarios</a>
                 <a href="service.html" class="nav-item nav-link">Service</a>
                 <a href="project.html" class="nav-item nav-link">Project</a>
                 <div class="nav-item dropdown">

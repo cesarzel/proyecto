@@ -1,4 +1,4 @@
- @extends('layout.app')
+@extends('layout.app')
 
 @section('contenido')
  <body>
@@ -6,7 +6,7 @@
     <div class="container-fluid p-0 pb-5">
         <div class="owl-carousel header-carousel position-relative">
             <div class="owl-carousel-item position-relative">
-                <img class="img-fluid" src="img/carousel-1.jpg" alt="">
+                <img class="img-fluid" src="{{ asset('mytemplate/img/carousel-1.jpg')}}" alt="">
                 <div class="carousel-inner">
                     <div class="container">
                         <div class="row justify-content-center">
@@ -21,7 +21,7 @@
                 </div>
             </div>
             <div class="owl-carousel-item position-relative">
-                <img class="img-fluid" src="img/carousel-2.jpg" alt="">
+                <img class="img-fluid" src="{{ asset ('mytemplate/img/carousel-2.jpg')}}" alt="">
                 <div class="carousel-inner">
                     <div class="container">
                         <div class="row justify-content-center">
@@ -36,7 +36,7 @@
                 </div>
             </div>
             <div class="owl-carousel-item position-relative">
-                <img class="img-fluid" src="img/carousel-3.jpg" alt="">
+                <img class="img-fluid" src="{{ asset('mytemplate/img/carousel-3.jpg')}}" alt="">
                 <div class="carousel-inner">
                     <div class="container">
                         <div class="row justify-content-center">
@@ -63,7 +63,7 @@
                     <div class="h-100 bg-dark p-4 p-xl-5">
                         <div class="d-flex align-items-center justify-content-between mb-4">
                             <div class="btn-square rounded-circle" style="width: 64px; height: 64px; background: #000000;">
-                                <img class="img-fluid" src="img/icon/icon-3.png" alt="Icon">
+                                <img class="img-fluid" src="{{ asset('mytemplate/img/icon/icon-3.png')}}" alt="Icon">
                             </div>
                             <h1 class="display-1 mb-0" style="color: #000000;">01</h1>
                         </div>
@@ -76,7 +76,7 @@
                     <div class="h-100 bg-dark p-4 p-xl-5">
                         <div class="d-flex align-items-center justify-content-between mb-4">
                             <div class="btn-square rounded-circle" style="width: 64px; height: 64px; background: #000000;">
-                                <img class="img-fluid" src="img/icon/icon-4.png" alt="Icon">
+                                <img class="img-fluid" src="{{asset ('mytemplate/img/icon/icon-4.png')}}" alt="Icon">
                             </div>
                             <h1 class="display-1 mb-0" style="color: #000000;">02</h1>
                         </div>
@@ -89,7 +89,7 @@
                     <div class="h-100 bg-dark p-4 p-xl-5">
                         <div class="d-flex align-items-center justify-content-between mb-4">
                             <div class="btn-square rounded-circle" style="width: 64px; height: 64px; background: #000000;">
-                                <img class="img-fluid" src="img/icon/icon-2.png" alt="Icon">
+                                <img class="img-fluid" src="{{asset ('mytemplate/img/icon/icon-2.png')}}" alt="Icon">
                             </div>
                             <h1 class="display-1 mb-0" style="color: #000000;">03</h1>
                         </div>
@@ -110,7 +110,7 @@
             <div class="row g-0 mx-lg-0">
                 <div class="col-lg-6 ps-lg-0" style="min-height: 400px;">
                     <div class="position-relative h-100">
-                        <img class="position-absolute img-fluid w-100 h-100" src="img/about.jpg" style="object-fit: cover;" alt="">
+                        <img class="position-absolute img-fluid w-100 h-100" src="{{asset('mytemplate/img/about.jpg')}}" style="object-fit: cover;" alt="">
                     </div>
                 </div>
                 <div class="col-lg-6 about-text py-5 wow fadeIn" data-wow-delay="0.5s">
@@ -122,7 +122,7 @@
                             <div class="col-sm-6 wow fadeIn" data-wow-delay="0.1s">
                                 <div class="d-flex align-items-center">
                                     <div class="btn-square bg-white rounded-circle" style="width: 64px; height: 64px;">
-                                        <img class="img-fluid" src="img/icon/icon-1.png" alt="Icon">
+                                        <img class="img-fluid" src="{{asset('mytemplate/img/icon/icon-1.png')}}" alt="Icon">
                                     </div>
                                     <div class="ms-4">
                                         <h2 class="mb-1" data-toggle="counter-up">1234</h2>
@@ -133,7 +133,7 @@
                             <div class="col-sm-6 wow fadeIn" data-wow-delay="0.3s">
                                 <div class="d-flex align-items-center">
                                     <div class="btn-square bg-white rounded-circle" style="width: 64px; height: 64px;">
-                                        <img class="img-fluid" src="img/icon/icon-5.png" alt="Icon">
+                                        <img class="img-fluid" src="{{asset ('mytemplate/img/icon/icon-5.png')}}" alt="Icon">
                                     </div>
                                     <div class="ms-4">
                                         <h2 class="mb-1" data-toggle="counter-up">1234</h2>
@@ -162,7 +162,7 @@
                 <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.1s">
                     <div class="service-item border h-100 p-5">
                         <div class="btn-square bg-light rounded-circle mb-4" style="width: 64px; height: 64px;">
-                            <img class="img-fluid" src="img/icon/icon-6.png" alt="Icon">
+                            <img class="img-fluid" src="{{asset ('mytemplate/img/icon/icon-6.png')}}" alt="Icon">
                         </div>
                         <h4 class="mb-3">Commercial CCTV System</h4>
                         <p class="mb-4">Stet stet justo dolor sed duo. Ut clita sea sit ipsum diam lorem</p>
@@ -172,7 +172,7 @@
                 <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.3s">
                     <div class="service-item border h-100 p-5">
                         <div class="btn-square bg-light rounded-circle mb-4" style="width: 64px; height: 64px;">
-                            <img class="img-fluid" src="img/icon/icon-8.png" alt="Icon">
+                            <img class="img-fluid" src="{{asset ('mytemplate/img/icon/icon-8.png')}}" alt="Icon">
                         </div>
                         <h4 class="mb-3">Finger Print Access</h4>
                         <p class="mb-4">Stet stet justo dolor sed duo. Ut clita sea sit ipsum diam lorem</p>
@@ -182,7 +182,7 @@
                 <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.5s">
                     <div class="service-item border h-100 p-5">
                         <div class="btn-square bg-light rounded-circle mb-4" style="width: 64px; height: 64px;">
-                            <img class="img-fluid" src="img/icon/icon-9.png" alt="Icon">
+                            <img class="img-fluid" src="{{asset ('mytemplate/img/icon/icon-9.png')}}" alt="Icon">
                         </div>
                         <h4 class="mb-3">Fire Detection And Safety</h4>
                         <p class="mb-4">Stet stet justo dolor sed duo. Ut clita sea sit ipsum diam lorem</p>
@@ -192,7 +192,7 @@
                 <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.7s">
                     <div class="service-item border h-100 p-5">
                         <div class="btn-square bg-light rounded-circle mb-4" style="width: 64px; height: 64px;">
-                            <img class="img-fluid" src="img/icon/icon-3.png" alt="Icon">
+                            <img class="img-fluid" src="{{asset ('mytemplate/img/icon/icon-3.png')}}" alt="Icon">
                         </div>
                         <h4 class="mb-3">Smart Home Security</h4>
                         <p class="mb-4">Stet stet justo dolor sed duo. Ut clita sea sit ipsum diam lorem</p>
@@ -218,7 +218,7 @@
                             <div class="col-6">
                                 <div class="d-flex align-items-center">
                                     <div class="btn-square bg-white rounded-circle" style="width: 64px; height: 64px;">
-                                        <img class="img-fluid" src="img/icon/icon-7.png" alt="Icon">
+                                        <img class="img-fluid" src="{{asset('mytemplate/img/icon/icon-7.png')}}" alt="Icon">
                                     </div>
                                     <div class="ms-4">
                                         <p class="text-primary mb-2">Trusted</p>
@@ -229,7 +229,7 @@
                             <div class="col-6">
                                 <div class="d-flex align-items-center">
                                     <div class="btn-square bg-white rounded-circle" style="width: 64px; height: 64px;">
-                                        <img class="img-fluid" src="img/icon/icon-10.png" alt="Icon">
+                                        <img class="img-fluid" src="{{asset('mytemplate/img/icon/icon-10.png')}}" alt="Icon">
                                     </div>
                                     <div class="ms-4">
                                         <p class="text-primary mb-2">Quality</p>
@@ -240,7 +240,7 @@
                             <div class="col-6">
                                 <div class="d-flex align-items-center">
                                     <div class="btn-square bg-white rounded-circle" style="width: 64px; height: 64px;">
-                                        <img class="img-fluid" src="img/icon/icon-3.png" alt="Icon">
+                                        <img class="img-fluid" src="{{asset('mytemplate/img/icon/icon-3.png')}}" alt="Icon">
                                     </div>
                                     <div class="ms-4">
                                         <p class="text-primary mb-2">Smart</p>
@@ -251,7 +251,7 @@
                             <div class="col-6">
                                 <div class="d-flex align-items-center">
                                     <div class="btn-square bg-white rounded-circle" style="width: 64px; height: 64px;">
-                                        <img class="img-fluid" src="img/icon/icon-2.png" alt="Icon">
+                                        <img class="img-fluid" src="{{asset('mytemplate/img/icon/icon-2.png')}}" alt="Icon">
                                     </div>
                                     <div class="ms-4">
                                         <p class="text-primary mb-2">24/7 Hours</p>
@@ -264,7 +264,7 @@
                 </div>
                 <div class="col-lg-6 pe-lg-0" style="min-height: 400px;">
                     <div class="position-relative h-100">
-                        <img class="position-absolute img-fluid w-100 h-100" src="img/feature.jpg" style="object-fit: cover;" alt="">
+                        <img class="position-absolute img-fluid w-100 h-100" src="{{asset('mytemplate/img/feature.jpg')}}" style="object-fit: cover;" alt="">
                     </div>
                 </div>
             </div>
@@ -292,7 +292,7 @@
             <div class="row g-4 portfolio-container">
                 <div class="col-lg-4 col-md-6 portfolio-item first wow fadeInUp" data-wow-delay="0.1s">
                     <div class="portfolio-inner">
-                        <img class="img-fluid w-100" src="img/portfolio-1.jpg" alt="">
+                        <img class="img-fluid w-100" src="{{asset ('mytemplate/img/portfolio-1.jpg')}}" alt="">
                         <div class="text-center p-4">
                             <p class="text-primary mb-2">Business Security</p>
                             <h5 class="lh-base mb-0">Smart CCTV Security Systems That Fits Your Business</h5>
@@ -309,7 +309,7 @@
                 </div>
                 <div class="col-lg-4 col-md-6 portfolio-item second wow fadeInUp" data-wow-delay="0.3s">
                     <div class="portfolio-inner">
-                        <img class="img-fluid w-100" src="img/portfolio-2.jpg" alt="">
+                        <img class="img-fluid w-100" src="{{asset ('mytemplate/img/portfolio-2.jpg')}}" alt="">
                         <div class="text-center p-4">
                             <p class="text-primary mb-2">Fire Detection</p>
                             <h5 class="lh-base mb-0">Smart CCTV Security Systems That Fits Your Business</h5>
@@ -326,7 +326,7 @@
                 </div>
                 <div class="col-lg-4 col-md-6 portfolio-item first wow fadeInUp" data-wow-delay="0.5s">
                     <div class="portfolio-inner">
-                        <img class="img-fluid w-100" src="img/portfolio-3.jpg" alt="">
+                        <img class="img-fluid w-100" src="{{asset ('mytemplate/img/portfolio-3.jpg')}}" alt="">
                         <div class="text-center p-4">
                             <p class="text-primary mb-2">Access Control</p>
                             <h5 class="lh-base mb-0">Smart CCTV Security Systems That Fits Your Business</h5>
@@ -343,7 +343,7 @@
                 </div>
                 <div class="col-lg-4 col-md-6 portfolio-item second wow fadeInUp" data-wow-delay="0.1s">
                     <div class="portfolio-inner">
-                        <img class="img-fluid w-100" src="img/portfolio-4.jpg" alt="">
+                        <img class="img-fluid w-100" src="{{asset ('mytemplate/img/portfolio-4.jpg')}}" alt="">
                         <div class="text-center p-4">
                             <p class="text-primary mb-2">Alarm Systems</p>
                             <h5 class="lh-base mb-0">Smart CCTV Security Systems That Fits Your Business</h5>
@@ -360,7 +360,7 @@
                 </div>
                 <div class="col-lg-4 col-md-6 portfolio-item first wow fadeInUp" data-wow-delay="0.3s">
                     <div class="portfolio-inner">
-                        <img class="img-fluid w-100" src="img/portfolio-5.jpg" alt="">
+                        <img class="img-fluid w-100" src="{{asset ('mytemplate/img/portfolio-5.jpg')}}" alt="">
                         <div class="text-center p-4">
                             <p class="text-primary mb-2">CCTV & Video</p>
                             <h5 class="lh-base mb-0">Smart CCTV Security Systems That Fits Your Business</h5>
@@ -377,7 +377,7 @@
                 </div>
                 <div class="col-lg-4 col-md-6 portfolio-item second wow fadeInUp" data-wow-delay="0.5s">
                     <div class="portfolio-inner">
-                        <img class="img-fluid w-100" src="img/portfolio-6.jpg" alt="">
+                        <img class="img-fluid w-100" src="{{asset ('mytemplate/img/portfolio-6.jpg')}}" alt="">
                         <div class="text-center p-4">
                             <p class="text-primary mb-2">Smart Home</p>
                             <h5 class="lh-base mb-0">Smart CCTV Security Systems That Fits Your Business</h5>
@@ -404,7 +404,7 @@
             <div class="row g-0 mx-lg-0">
                 <div class="col-lg-6 ps-lg-0" style="min-height: 400px;">
                     <div class="position-relative h-100">
-                        <img class="position-absolute img-fluid w-100 h-100" src="img/quote.jpg" style="object-fit: cover;" alt="">
+                        <img class="position-absolute img-fluid w-100 h-100" src="{{asset ('mytemplate/img/quote.jpg')}}" style="object-fit: cover;" alt="">
                     </div>
                 </div>
                 <div class="col-lg-6 quote-text py-5 wow fadeIn" data-wow-delay="0.5s">
@@ -458,7 +458,7 @@
                 <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                     <div class="team-item">
                         <div class="overflow-hidden position-relative">
-                            <img class="img-fluid" src="img/team-1.jpg" alt="">
+                            <img class="img-fluid" src="{{asset('mytemplate/img/team-1.jpg')}}" alt="">
                             <div class="team-social">
                                 <a class="btn btn-square btn-dark rounded-circle m-1" href=""><i class="fab fa-facebook-f"></i></a>
                                 <a class="btn btn-square btn-dark rounded-circle m-1" href=""><i class="fab fa-twitter"></i></a>
@@ -474,7 +474,7 @@
                 <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
                     <div class="team-item">
                         <div class="overflow-hidden position-relative">
-                            <img class="img-fluid" src="img/team-2.jpg" alt="">
+                            <img class="img-fluid" src="{{asset('mytemplate/img/team-2.jpg')}}" alt="">
                             <div class="team-social">
                                 <a class="btn btn-square btn-dark rounded-circle m-1" href=""><i class="fab fa-facebook-f"></i></a>
                                 <a class="btn btn-square btn-dark rounded-circle m-1" href=""><i class="fab fa-twitter"></i></a>
@@ -490,7 +490,7 @@
                 <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
                     <div class="team-item">
                         <div class="overflow-hidden position-relative">
-                            <img class="img-fluid" src="img/team-3.jpg" alt="">
+                            <img class="img-fluid" src="{{asset('mytemplate/img/team-3.jpg')}}" alt="">
                             <div class="team-social">
                                 <a class="btn btn-square btn-dark rounded-circle m-1" href=""><i class="fab fa-facebook-f"></i></a>
                                 <a class="btn btn-square btn-dark rounded-circle m-1" href=""><i class="fab fa-twitter"></i></a>
@@ -506,7 +506,7 @@
                 <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
                     <div class="team-item">
                         <div class="overflow-hidden position-relative">
-                            <img class="img-fluid" src="img/team-4.jpg" alt="">
+                            <img class="img-fluid" src="{{asset('mytemplate/img/team-4.jpg')}}" alt="">
                             <div class="team-social">
                                 <a class="btn btn-square btn-dark rounded-circle m-1" href=""><i class="fab fa-facebook-f"></i></a>
                                 <a class="btn btn-square btn-dark rounded-circle m-1" href=""><i class="fab fa-twitter"></i></a>
@@ -533,17 +533,17 @@
                 <h1 class="display-5 mb-5">Testimonial</h1>
             </div>
             <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.1s">
-                <div class="testimonial-item text-center" data-dot="<img class='img-fluid' src='img/testimonial-1.jpg' alt=''>">
+                <div class="testimonial-item text-center" data-dot="<img class='img-fluid' src='{{asset ('mytemplate/img/testimonial-1.jpg')}}' alt=''>">
                     <p class="fs-5">Clita clita tempor justo dolor ipsum amet kasd amet duo justo duo duo labore sed sed. Magna ut diam sit et amet stet eos sed clita erat magna elitr erat sit sit erat at rebum justo sea clita.</p>
                     <h4>Client Name</h4>
                     <span class="text-primary">Profession</span>
                 </div>
-                <div class="testimonial-item text-center" data-dot="<img class='img-fluid' src='img/testimonial-2.jpg' alt=''>">
+                <div class="testimonial-item text-center" data-dot="<img class='img-fluid' src='{{asset ('mytemplate/img/testimonial-2.jpg')}}' alt=''>">
                     <p class="fs-5">Clita clita tempor justo dolor ipsum amet kasd amet duo justo duo duo labore sed sed. Magna ut diam sit et amet stet eos sed clita erat magna elitr erat sit sit erat at rebum justo sea clita.</p>
                     <h4>Client Name</h4>
                     <span class="text-primary">Profession</span>
                 </div>
-                <div class="testimonial-item text-center" data-dot="<img class='img-fluid' src='img/testimonial-3.jpg' alt=''>">
+                <div class="testimonial-item text-center" data-dot="<img class='img-fluid' src='{{asset ('mytemplate/img/testimonial-3.jpg')}}' alt=''>">
                     <p class="fs-5">Clita clita tempor justo dolor ipsum amet kasd amet duo justo duo duo labore sed sed. Magna ut diam sit et amet stet eos sed clita erat magna elitr erat sit sit erat at rebum justo sea clita.</p>
                     <h4>Client Name</h4>
                     <span class="text-primary">Profession</span>
@@ -556,13 +556,13 @@
   <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="lib/wow/wow.min.js"></script>
-    <script src="lib/easing/easing.min.js"></script>
-    <script src="lib/waypoints/waypoints.min.js"></script>
-    <script src="lib/counterup/counterup.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-    <script src="lib/isotope/isotope.pkgd.min.js"></script>
-    <script src="lib/lightbox/js/lightbox.min.js"></script>
+    <script src="{{ asset ('mytemplate/lib/wow/wow.min.js') }}"></script>
+    <script src="{{ asset ('mytemplate/lib/easing/easing.min.js') }}"></script>
+    <script src="{{ asset ('mytemplate/lib/waypoints/waypoints.min.js') }}"></script>
+    <script src="{{ asset ('mytemplate/lib/counterup/counterup.min.js') }}"></script>
+    <script src="{{ asset ('mytemplate/lib/owlcarousel/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset ('mytemplate/lib/isotope/isotope.pkgd.min.js') }}"></script>
+    <script src="{{ asset ('mytemplate/lib/lightbox/js/lightbox.min.js') }}"></script>
 
  </body>
  @endsection
