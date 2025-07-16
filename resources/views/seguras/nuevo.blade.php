@@ -13,8 +13,8 @@
     <label><b>Tipo de Seguridad:</b></label><br>
     <select name="tipo" id="tipo" class="form-control" required>
         <option value="">--- SELECCIONE ---</option>
-        <option value="PUBLICA">ZONA PÚBLICA</option>
-        <option value="PRIVADA">ZONA PRIVADA</option>
+        <option value="PUBLICA">PÚBLICA</option>
+        <option value="PRIVADA">PRIVADA</option>
     </select><br>
 
     <label><b>Radio (en metros):</b></label><br>
