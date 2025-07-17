@@ -284,7 +284,7 @@
                 <div class="col-12 text-center">
                     <ul class="list-inline mb-5" id="portfolio-flters">
                         <li class="mx-2 active" data-filter="*">All</li>
-                        <li class="mx-2" data-filter=".first">Complete Projectss</li>
+                        <li class="mx-2" data-filter=".first">Complete Projects</li>
                         <li class="mx-2" data-filter=".second">Ongoing Projects</li>
                     </ul>
                 </div>
