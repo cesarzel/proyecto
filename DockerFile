@@ -1,48 +1,36 @@
-# Imagen base oficial de PHP con Apache
 FROM php:8.2-apache
 
-# Instala dependencias necesarias, incluyendo gd
+# Instalar extensiones requeridas (incluyendo gd)
 RUN apt-get update && apt-get install -y \
-    unzip \
-    curl \
-    git \
-    libpng-dev \
-    libjpeg-dev \
-    libfreetype6-dev \
-    libonig-dev \
-    libzip-dev \
-    zip \
+    unzip curl git zip libzip-dev libonig-dev libxml2-dev \
+    libpng-dev libjpeg-dev libfreetype6-dev \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install gd pdo pdo_mysql mbstring zip
+    && docker-php-ext-install gd pdo pdo_pgsql mbstring zip
 
-# Habilita mod_rewrite (Laravel lo requiere)
+# Habilita mod_rewrite de Apache (requerido por Laravel)
 RUN a2enmod rewrite
 
-# Copia Composer desde su imagen oficial
+# Copia Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 # Establece directorio de trabajo
 WORKDIR /var/www/html
 
-# Copia composer.json y composer.lock primero (cache)
+# Copiar y preparar Composer
 COPY composer.json composer.lock ./
-
-# Instala dependencias de Composer (en producción sin dev)
 RUN composer install --no-dev --optimize-autoloader --ignore-platform-reqs
 
-# Copia el resto del proyecto
+# Copia todo el proyecto
 COPY . .
 
-# Permisos a carpetas necesarias
+# Asignar permisos
 RUN chown -R www-data:www-data storage bootstrap/cache
 
-# Configura el DocumentRoot a public/
+# Configura Apache para servir desde /public
 ENV APACHE_DOCUMENT_ROOT /var/www/html/public
 RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf \
  && sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
 
-# Exponer puerto 80 (necesario para Railway)
 EXPOSE 80
 
-# Comando de arranque
 CMD ["apache2-foreground"]
