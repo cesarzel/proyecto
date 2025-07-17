@@ -1,29 +1,29 @@
 FROM php:8.1-apache
 
-# Instala extensiones necesarias
+# Instala extensiones necesarias para Laravel
 RUN apt-get update && apt-get install -y \
-    unzip curl git libzip-dev libonig-dev libxml2-dev zip \
-    && docker-php-ext-install pdo pdo_mysql mbstring zip
+    unzip curl git libzip-dev libonig-dev libxml2-dev zip libpng-dev \
+    && docker-php-ext-install pdo pdo_mysql mbstring zip gd
 
-# Habilita mod_rewrite para Laravel
+# Habilita mod_rewrite
 RUN a2enmod rewrite
 
 # Copia Composer desde imagen oficial
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Establece el directorio de trabajo
+# Establece directorio de trabajo
 WORKDIR /var/www/html
 
-# Copia solo composer para instalar dependencias primero
+# Copia composer primero para instalar dependencias
 COPY composer.json composer.lock ./
 
-# Instala dependencias primero (más estable)
+# Instala dependencias de Composer
 RUN composer install --no-dev --optimize-autoloader
 
-# Luego copia el resto del proyecto
+# Copia el resto del proyecto
 COPY . .
 
-# Define public como DocumentRoot
+# Define el DocumentRoot como public/
 ENV APACHE_DOCUMENT_ROOT /var/www/html/public
 
 RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf \
