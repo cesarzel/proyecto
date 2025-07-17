@@ -74,14 +74,14 @@
             title: "Ubicación seleccionada"
         });
 
-        // mover marcador al arrastrar
+        // Actualizar campos al mover el marcador
         marcador.addListener('dragend', function () {
             const pos = marcador.getPosition();
             document.getElementById("latitud").value = pos.lat().toFixed(6);
             document.getElementById("longitud").value = pos.lng().toFixed(6);
         });
 
-        // Actualizar marcador al hacer clic en el mapa
+        // funcionalidad para mover el marcador al hacer clic en el mapa
         mapa.addListener('click', function (event) {
             const clickLocation = event.latLng;
             marcador.setPosition(clickLocation);
