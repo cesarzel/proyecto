@@ -74,7 +74,7 @@
             title: "Ubicación seleccionada"
         });
 
-        // Actualizar campos al mover el marcador
+        // mover marcador al arrastrar
         marcador.addListener('dragend', function () {
             const pos = marcador.getPosition();
             document.getElementById("latitud").value = pos.lat().toFixed(6);
