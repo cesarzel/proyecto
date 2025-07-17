@@ -81,7 +81,7 @@
             document.getElementById("longitud").value = pos.lng().toFixed(6);
         });
 
-        // funcionalidad para mover el marcador al hacer clic en el mapa
+        // Actualizar marcador al hacer clic en el mapa
         mapa.addListener('click', function (event) {
             const clickLocation = event.latLng;
             marcador.setPosition(clickLocation);
