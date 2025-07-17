@@ -8,28 +8,29 @@ RUN apt-get update && apt-get install -y \
 # Habilita mod_rewrite
 RUN a2enmod rewrite
 
-# Copia Composer
+# Copia Composer desde la imagen oficial
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Copia todo el proyecto completo antes del install
+# Configura y copia archivos base
 WORKDIR /var/www/html
+COPY composer.json composer.lock ./
+
+# Define la plataforma a PHP 8.2 (como requiere Laravel 12)
+RUN composer config platform.php 8.2.0
+
+# Instala dependencias sin dev ni scripts
+RUN composer install --no-dev --optimize-autoloader --ignore-platform-reqs
+
+# Copia el resto del proyecto
 COPY . .
 
-# Ajustes de permisos
+# Permisos
 RUN chown -R www-data:www-data storage bootstrap/cache
 
-# Instala dependencias de Composer (desactiva scripts)
-RUN composer install --no-dev --no-scripts --optimize-autoloader
-
-# Ejecuta scripts post-install manualmente (si no hay error)
-RUN composer run-script post-autoload-dump || true
-
-# Apache escucha el puerto asignado por Render
+# Configuración Apache
 ENV APACHE_DOCUMENT_ROOT /var/www/html/public
 RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf \
- && sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf \
- && sed -i "s/Listen 80/Listen ${PORT}/" /etc/apache2/ports.conf \
- && sed -i "s/<VirtualHost \*:80>/<VirtualHost *:${PORT}>/" /etc/apache2/sites-available/000-default.conf
+ && sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
 
-EXPOSE ${PORT}
+EXPOSE 80
 CMD ["apache2-foreground"]
