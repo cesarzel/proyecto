@@ -13,9 +13,9 @@
            value="{{ $segura->nombre }}" required><br>
 
     <label><b>Tipo de Seguridad:</b></label><br>
-    <select name="tipo" id="tipo" class="form-control" required>
-        <option value="PUBLICA" {{ $segura->tipo == 'PUBLICA' ? 'selected' : '' }}>ZONA PÚBLICA</option>
-        <option value="PRIVADA" {{ $segura->tipo == 'PRIVADA' ? 'selected' : '' }}>ZONA PRIVADA</option>
+    <select name="tipo_seguridad" id="tipo_seguridad" class="form-control" required>
+        <option value="PUBLICA" {{ $segura->tipo_seguridad == 'PUBLICA' ? 'selected' : '' }}>ZONA PÚBLICA</option>
+        <option value="PRIVADA" {{ $segura->tipo_seguridad == 'PRIVADA' ? 'selected' : '' }}>ZONA PRIVADA</option>
     </select><br>
 
     <label><b>Radio (en metros):</b></label><br>

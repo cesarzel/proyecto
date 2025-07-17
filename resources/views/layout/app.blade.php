@@ -78,7 +78,7 @@
 
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0 px-4 px-lg-5">
-        <a href="index.html" class="navbar-brand d-flex align-items-center">
+        <a href="{{ url('/punto/template') }}" class="navbar-brand d-flex align-items-center">
             <h2 class="m-0 text-primary">Securex</h2>
         </a>
         <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -86,13 +86,13 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto py-4 py-lg-0">
-                <a href="{{ url('/punto/template') }}" class="nav-item nav-link active">Home</a>
                 <a href="{{ route('puntos.index') }}" class="nav-item nav-link">Puntos Comuni.</a>
                 <a href="{{ url('/puntos/mapa') }}" class="nav-item nav-link active">Mapa Puntos</a>
                 <a href="{{ route('riesgos.index') }}" class="nav-item nav-link">Zonas de Riesgo</a>
                 <a href="{{ route('riesgos.mapa') }}" class="nav-item nav-link active">Mapa Z.Riesgo</a>
                 <a href="{{ route('seguras.index') }}" class="nav-item nav-link">Zonas Seguras</a>
                 <a href="{{ route('seguras.mapa') }}" class="nav-item nav-link active">Mapa Z.Segura</a>
+                <a href="{{ url('/mapa-general') }}" class="nav-item nav-link active">Mapa</a>
             </div>
             <div class="h-100 d-lg-inline-flex align-items-center d-none">
                 <a class="btn btn-square rounded-circle bg-light text-primary me-2" href=""><i class="fab fa-facebook-f"></i></a>

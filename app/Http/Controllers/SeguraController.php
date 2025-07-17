@@ -38,7 +38,7 @@ class SeguraController extends Controller
         $datos = [
             'nombre'      => $request->nombre,
             'responsable' => $request->responsable,
-            'tipo'        => $request->tipo,
+            'tipo_seguridad'        => $request->tipo_seguridad,
             'radio'       => $request->radio,
             'latitud'     => $request->latitud,
             'longitud'    => $request->longitud,
@@ -75,7 +75,7 @@ class SeguraController extends Controller
         $segura->update([
             'nombre'      => $request->nombre,
             'responsable' => $request->responsable,
-            'tipo'        => $request->tipo,
+            'tipo_seguridad'        => $request->tipo_seguridad,
             'radio'       => $request->radio,
             'latitud'     => $request->latitud,
             'longitud'    => $request->longitud,

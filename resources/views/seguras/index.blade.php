@@ -33,7 +33,7 @@
             <tr>
                 <td>{{ $index + 1 }}</td>
                 <td>{{ $zona->nombre }}</td>
-                <td>{{ ucfirst(strtolower($zona->tipo)) }}</td>
+                <td>{{ ucfirst(strtolower($zona->tipo_seguridad)) }}</td>
                 <td>{{ $zona->radio }}</td>
                 <td>{{ $zona->latitud }}</td>
                 <td>{{ $zona->longitud }}</td>

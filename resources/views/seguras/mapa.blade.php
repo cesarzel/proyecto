@@ -22,6 +22,20 @@
 
         zonas.forEach(zona => {
             const centro = new google.maps.LatLng(parseFloat(zona.latitud), parseFloat(zona.longitud));
+            
+            const colores = {
+                PUBLICA: {
+                    stroke: "#007BFF",     // azul
+                    fill: "#A3C9FF"
+                },
+                PRIVADA: {
+                    stroke: "#800080",     // púrpura
+                    fill: "#D8BFD8"
+                }
+            };
+
+            const tipo = zona.tipo_seguridad.toUpperCase(); // por si viene en minúscula
+            const color = colores[tipo] || { stroke: "#666", fill: "#CCC" };
 
             // Marcador
             new google.maps.Marker({
@@ -30,12 +44,12 @@
                 title: zona.nombre
             });
 
-            // Círculo
+            // Círculo con color dinámico
             new google.maps.Circle({
-                strokeColor: "green",
+                strokeColor: color.stroke,
                 strokeOpacity: 0.8,
                 strokeWeight: 2,
-                fillColor: "lightgreen",
+                fillColor: color.fill,
                 fillOpacity: 0.35,
                 map: mapa,
                 center: centro,

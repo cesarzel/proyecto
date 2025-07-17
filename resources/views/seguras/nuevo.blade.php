@@ -11,7 +11,7 @@
     <input type="text" name="nombre" id="nombre" class="form-control" placeholder="Ej. Plaza Central"><br>
 
     <label><b>Tipo de Seguridad:</b></label><br>
-    <select name="tipo" id="tipo" class="form-control" required>
+    <select name="tipo_seguridad" id="tipo_seguridad" class="form-control" required>
         <option value="">--- SELECCIONE ---</option>
         <option value="PUBLICA">PÚBLICA</option>
         <option value="PRIVADA">PRIVADA</option>
