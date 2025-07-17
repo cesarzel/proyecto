@@ -84,22 +84,37 @@
         <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-            <div class="navbar-nav ms-auto py-4 py-lg-0">
-                <a href="{{ route('puntos.index') }}" class="nav-item nav-link">Puntos Comuni.</a>
-                <a href="{{ url('/puntos/mapa') }}" class="nav-item nav-link active">Mapa Puntos</a>
-                <a href="{{ route('riesgos.index') }}" class="nav-item nav-link">Zon. Riesgo</a>
-                <a href="{{ route('riesgos.mapa') }}" class="nav-item nav-link active">Mapa Z.Riesgo</a>
-                <a href="{{ route('seguras.index') }}" class="nav-item nav-link">Zon. Seguras</a>
-                <a href="{{ route('seguras.mapa') }}" class="nav-item nav-link active">Mapa Z.Segura</a>
-                <a href="{{ url('/mapa-general') }}" class="nav-item nav-link ">Mapa</a>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('reporte.pdf') }}" target="_blank">
-                        📄 Reporte PDF
-                    </a>
-                </li>
-            </div>
+     <div class="collapse navbar-collapse" id="navbarCollapse">
+        <div class="navbar-nav ms-auto py-4 py-lg-0">
+
+            {{-- Para todos los roles (admin y visitante) --}}
+            <a href="{{ url('/puntos/mapa') }}" class="nav-item nav-link">Mapa Puntos</a>
+            <a href="{{ route('riesgos.mapa') }}" class="nav-item nav-link">Mapa Z. Riesgo</a>
+            <a href="{{ route('seguras.mapa') }}" class="nav-item nav-link">Mapa Z. Segura</a>
+            <a href="{{ url('/mapa-general') }}" class="nav-item nav-link">Mapa General</a>
+
+            {{-- Solo para administrador --}}
+            @auth
+                @if(auth()->user()->rol === 'admin')
+                    <a href="{{ route('puntos.index') }}" class="nav-item nav-link">Puntos Comuni.</a>
+                    <a href="{{ route('riesgos.index') }}" class="nav-item nav-link">Zon. Riesgo</a>
+                    <a href="{{ route('seguras.index') }}" class="nav-item nav-link">Zon. Seguras</a>
+                @endif
+            @endauth
+
+            {{-- Si quieres mostrar login o logout según esté logueado --}}
+            @guest
+                <a href="{{ route('login') }}" class="nav-item nav-link">Iniciar sesión</a>
+            @else
+                <form action="{{ route('logout') }}" method="POST" class="d-inline">
+                    @csrf
+                    <button class="nav-item nav-link btn btn-link text-danger" style="text-decoration: none;">Cerrar sesión</button>
+                </form>
+            @endguest
+
         </div>
+    </div>
+
     </nav>
     <!-- Navbar End -->
 
