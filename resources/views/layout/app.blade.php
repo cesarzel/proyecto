@@ -8,7 +8,7 @@
     <meta content="" name="keywords">
     <meta content="" name="description">
 
-    <!-- Icono de inicio -->
+    <!-- Favicon -->
     <link href="{{ asset('mytemplate/img/favicon.ico') }}" rel="icon">
 
    
