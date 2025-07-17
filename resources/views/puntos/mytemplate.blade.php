@@ -142,7 +142,7 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="" class="btn btn-primary rounded-pill py-3 px-5">Explore Mas</a>
+                        <a href="" class="btn btn-primary rounded-pill py-3 px-5">Explore More</a>
                     </div>
                 </div>
             </div>
