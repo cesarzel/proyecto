@@ -11,26 +11,25 @@ RUN a2enmod rewrite
 # Copia Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Copia archivos antes del install
+# Copia todo el proyecto completo antes del install
 WORKDIR /var/www/html
-COPY composer.json composer.lock ./
-
-# Instalación de dependencias (sin post-scripts de artisan)
-RUN composer install --no-dev --no-scripts --optimize-autoloader
-
-# Luego copias todo lo demás
 COPY . .
 
-# Ejecuta los scripts manualmente
-RUN composer run-script post-autoload-dump || true
-
-# Permisos
+# Ajustes de permisos
 RUN chown -R www-data:www-data storage bootstrap/cache
 
-# Configuración de Apache
+# Instala dependencias de Composer (desactiva scripts)
+RUN composer install --no-dev --no-scripts --optimize-autoloader
+
+# Ejecuta scripts post-install manualmente (si no hay error)
+RUN composer run-script post-autoload-dump || true
+
+# Apache escucha el puerto asignado por Render
 ENV APACHE_DOCUMENT_ROOT /var/www/html/public
-RUN sed -i "s/Listen 80/Listen ${PORT}/" /etc/apache2/ports.conf
-RUN sed -i "s/<VirtualHost \*:80>/<VirtualHost *:${PORT}>/" /etc/apache2/sites-available/000-default.conf
+RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf \
+ && sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf \
+ && sed -i "s/Listen 80/Listen ${PORT}/" /etc/apache2/ports.conf \
+ && sed -i "s/<VirtualHost \*:80>/<VirtualHost *:${PORT}>/" /etc/apache2/sites-available/000-default.conf
 
 EXPOSE ${PORT}
 CMD ["apache2-foreground"]
