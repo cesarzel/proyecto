@@ -1,39 +1,40 @@
 FROM php:8.2-apache
 
-# Instala dependencias del sistema y GD
+# Instala GD y demás dependencias necesarias
 RUN apt-get update && apt-get install -y \
     unzip curl git zip libzip-dev libonig-dev libxml2-dev \
     libpng-dev libjpeg-dev libfreetype6-dev \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install pdo pdo_mysql mbstring zip gd
 
-
-# Habilita mod_rewrite para Laravel
+# Habilita mod_rewrite
 RUN a2enmod rewrite
 
-# Copia Composer desde imagen oficial
+# Copia composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Establece directorio de trabajo
+# Establece el directorio de trabajo
 WORKDIR /var/www/html
 
-# Copia solo composer files primero para cache
+# Copia composer.json y composer.lock
 COPY composer.json composer.lock ./
 
 # Instala dependencias
-RUN composer install --no-dev --no-scripts --optimize-autoloader --ignore-platform-reqs
+RUN composer install --no-dev --no-scripts --optimize-autoloader
 
 # Copia el resto del proyecto
 COPY . .
 
-# Permisos para Laravel
+# Permisos
 RUN chown -R www-data:www-data storage bootstrap/cache
 
-# Configura el document root en Apache
+# Configura Apache para servir desde /public
 ENV APACHE_DOCUMENT_ROOT /var/www/html/public
 RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf \
  && sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
 
+# Puerto
 EXPOSE 80
 
+# Comando final
 CMD ["apache2-foreground"]
