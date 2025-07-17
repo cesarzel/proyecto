@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: laravel-app
+    env: docker
+    plan: free
+    autoDeploy: true
+    buildCommand: ""
+    startCommand: ""
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: false
+      - key: APP_KEY
+        value: base64:oHs+WB89HpcDdHaw6T2C3BPVayZbCBYci+xvClO4YM0=
+      - key: PORT
+        value: 10000
