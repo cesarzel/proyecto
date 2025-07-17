@@ -67,7 +67,7 @@
                             </div>
                             <h1 class="display-1 mb-0" style="color: #000000;">01</h1>
                         </div>
-                        <h5 class="text-white">Home Security</h5>
+                        <h5 class="text-white">Home Seguridad</h5>
                         <hr class="w-25">
                         <span>Vero elitr justo clita lorem ipsum dolor at sed stet sit diam rebum ipsum et diam justo clita et</span>
                     </div>
