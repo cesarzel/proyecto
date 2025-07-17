@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PuntoController;
 use App\Http\Controllers\RiesgoController;
+use App\Http\Controllers\ReportePDFController;
 use App\Http\Controllers\SeguraController;
 use App\Models\Punto;
 use App\Models\Riesgo;
@@ -20,6 +21,7 @@ Route::get('/mapa-general', function () {
 })->name('mapa.general');
 
 
+
 // habilitar una ruta especifica para el mapa 
 Route::get('/puntos/mapa',[PuntoController::class,'mapa']);
 Route::get('/riesgos/mapa', [RiesgoController::class, 'mapa'])->name('riesgos.mapa');
@@ -35,3 +37,5 @@ Route::resource('seguras', SeguraController::class);
 Route::get('/punto/template', function () {
     return view('puntos.mytemplate');
 });
+
+Route::get('/reporte/pdf', [ReportePDFController::class, 'generarReporte'])->name('reporte.pdf');

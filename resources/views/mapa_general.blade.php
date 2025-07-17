@@ -4,14 +4,19 @@
 <h2>MAPA GENERAL DE ZONAS</h2>
 <hr style="border:2px solid green">
 
+<div class="mb-3">
+  <a href="{{ route('reporte.pdf') }}" target="_blank" class="btn btn-outline-primary">
+    📄 Descargar Reporte PDF
+  </a>
+</div>
 {{-- Filtros --}}
 <div class="mb-3">
-    <label><input type="checkbox" class="filtro" data-tipo="punto" checked> Mostrar Puntos</label>
-    <label><input type="checkbox" class="filtro" data-tipo="riesgo" data-nivel="BAJO" checked> Riesgo Bajo</label>
-    <label><input type="checkbox" class="filtro" data-tipo="riesgo" data-nivel="MEDIO" checked> Riesgo Medio</label>
-    <label><input type="checkbox" class="filtro" data-tipo="riesgo" data-nivel="ALTO" checked> Riesgo Alto</label>
-    <label><input type="checkbox" class="filtro" data-tipo="segura" data-categoria="PUBLICA" checked> Segura Pública</label>
-    <label><input type="checkbox" class="filtro" data-tipo="segura" data-categoria="PRIVADA" checked> Segura Privada</label>
+    <label><input type="checkbox" class="filtro" data-tipo="punto" checked> Mostrar Puntos</label>&nbsp;&nbsp;&nbsp;&nbsp;
+    <label><input type="checkbox" class="filtro" data-tipo="riesgo" data-nivel="BAJO" checked> Riesgo Bajo</label>&nbsp;&nbsp;&nbsp;&nbsp;
+    <label><input type="checkbox" class="filtro" data-tipo="riesgo" data-nivel="MEDIO" checked> Riesgo Medio</label>&nbsp;&nbsp;&nbsp;&nbsp;
+    <label><input type="checkbox" class="filtro" data-tipo="riesgo" data-nivel="ALTO" checked> Riesgo Alto</label>&nbsp;&nbsp;&nbsp;&nbsp;
+    <label><input type="checkbox" class="filtro" data-tipo="segura" data-categoria="PUBLICA" checked> Segura Pública</label>&nbsp;&nbsp;&nbsp;&nbsp;
+    <label><input type="checkbox" class="filtro" data-tipo="segura" data-categoria="PRIVADA" checked> Segura Privada</label>&nbsp;&nbsp;&nbsp;&nbsp;
 </div>
 
 <div id="mapaZonas" style="height: 600px; width: 100%; border:2px solid black;"></div>

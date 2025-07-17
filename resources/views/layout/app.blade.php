@@ -88,17 +88,16 @@
             <div class="navbar-nav ms-auto py-4 py-lg-0">
                 <a href="{{ route('puntos.index') }}" class="nav-item nav-link">Puntos Comuni.</a>
                 <a href="{{ url('/puntos/mapa') }}" class="nav-item nav-link active">Mapa Puntos</a>
-                <a href="{{ route('riesgos.index') }}" class="nav-item nav-link">Zonas de Riesgo</a>
+                <a href="{{ route('riesgos.index') }}" class="nav-item nav-link">Zon. Riesgo</a>
                 <a href="{{ route('riesgos.mapa') }}" class="nav-item nav-link active">Mapa Z.Riesgo</a>
-                <a href="{{ route('seguras.index') }}" class="nav-item nav-link">Zonas Seguras</a>
+                <a href="{{ route('seguras.index') }}" class="nav-item nav-link">Zon. Seguras</a>
                 <a href="{{ route('seguras.mapa') }}" class="nav-item nav-link active">Mapa Z.Segura</a>
-                <a href="{{ url('/mapa-general') }}" class="nav-item nav-link active">Mapa</a>
-            </div>
-            <div class="h-100 d-lg-inline-flex align-items-center d-none">
-                <a class="btn btn-square rounded-circle bg-light text-primary me-2" href=""><i class="fab fa-facebook-f"></i></a>
-                <a class="btn btn-square rounded-circle bg-light text-primary me-2" href=""><i class="fab fa-twitter"></i></a>
-                <a class="btn btn-square rounded-circle bg-light text-primary me-2" href=""><i class="fab fa-linkedin-in"></i></a>
-                <a class="btn btn-square rounded-circle bg-light text-primary me-0" href=""><i class="fab fa-instagram"></i></a>
+                <a href="{{ url('/mapa-general') }}" class="nav-item nav-link ">Mapa</a>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('reporte.pdf') }}" target="_blank">
+                        📄 Reporte PDF
+                    </a>
+                </li>
             </div>
         </div>
     </nav>
@@ -179,8 +178,10 @@
     <!-- Template Javascript -->
     <script src="{{ asset('mytemplate/js/main.js') }}"></script>
 
-     <!-- Google Maps -->
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAoJovMIpUACl_dHHWdthfT5n9PIUskRn8=&libraries=places&callback=initMap"></script>
+     <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key={{ config('services.google_maps.key') }}&libraries=places&callback=initMap">
+    </script>
+
     <!-- Bootstrap 5 JS + Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 
