@@ -52,7 +52,7 @@
             document.getElementById("longitud").value = nuevaPos.lng().toFixed(6);
         });
 
-        // funcionalidad mapa
+        // Permite hacer clic en el mapa para mover el marcador
         mapa.addListener('click', function (e) {
             marcador.setPosition(e.latLng);
             document.getElementById("latitud").value = e.latLng.lat().toFixed(6);
