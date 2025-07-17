@@ -205,7 +205,7 @@
     <!-- Service End -->
 
 
-    <!-- Feature Start -->
+    <!-- Feature inicio -->
     <div class="container-fluid bg-light overflow-hidden my-5 px-lg-0">
         <div class="container feature px-lg-0">
             <div class="row g-0 mx-lg-0">
