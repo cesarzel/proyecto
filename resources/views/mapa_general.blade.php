@@ -9,6 +9,7 @@
     📄 Descargar Reporte PDF
   </a>
 </div>
+
 {{-- Filtros --}}
 <div class="mb-3">
     <label><input type="checkbox" class="filtro" data-tipo="punto" checked> Mostrar Puntos</label>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -34,7 +35,8 @@
             mapTypeId: google.maps.MapTypeId.ROADMAP
         });
 
-        // Puntos de encuentro
+        const infoWindow = new google.maps.InfoWindow();
+
         const puntos = @json($puntos);
         puntos.forEach(p => {
             const marcador = new google.maps.Marker({
@@ -42,10 +44,15 @@
                 map: mapa,
                 title: p.nombre
             });
+
+            marcador.addListener('click', () => {
+                infoWindow.setContent(`<strong>${p.nombre}</strong><br>Lat: ${p.latitud}, Lng: ${p.longitud}`);
+                infoWindow.open(mapa, marcador);
+            });
+
             marcadores.push(marcador);
         });
 
-        // Zonas de riesgo (polígonos)
         const riesgos = @json($riesgos);
         riesgos.forEach(r => {
             const coords = [
@@ -70,6 +77,17 @@
                 map: mapa
             });
 
+            poligono.addListener('click', (e) => {
+                const contenido = `
+                    <strong>${r.nombre}</strong><br>
+                    Nivel de Riesgo: ${r.nivel_riesgo}<br>
+                    Descripción: ${r.descripcion}<br>
+                `;
+                infoWindow.setContent(contenido);
+                infoWindow.setPosition(e.latLng);
+                infoWindow.open(mapa);
+            });
+
             poligonos.push({
                 obj: poligono,
                 tipo: 'riesgo',
@@ -77,7 +95,6 @@
             });
         });
 
-        // Zonas seguras (círculos)
         const seguras = @json($seguras);
         seguras.forEach(s => {
             const color = {
@@ -85,8 +102,10 @@
                 PRIVADA: '#9B59B6'
             }[s.tipo_seguridad.toUpperCase()] || '#AAAAAA';
 
+            const centro = { lat: parseFloat(s.latitud), lng: parseFloat(s.longitud) };
+
             const circulo = new google.maps.Circle({
-                center: { lat: parseFloat(s.latitud), lng: parseFloat(s.longitud) },
+                center: centro,
                 radius: parseFloat(s.radio),
                 strokeColor: '#000000',
                 strokeOpacity: 0.8,
@@ -96,6 +115,17 @@
                 map: mapa
             });
 
+            circulo.addListener('click', (e) => {
+                const contenido = `
+                    <strong>${s.nombre}</strong><br>
+                    Tipo: ${s.tipo_seguridad}<br>
+                    Radio: ${s.radio} metros
+                `;
+                infoWindow.setContent(contenido);
+                infoWindow.setPosition(e.latLng);
+                infoWindow.open(mapa);
+            });
+
             circulos.push({
                 obj: circulo,
                 tipo: 'segura',
@@ -103,7 +133,6 @@
             });
         });
 
-        // Escuchar filtros
         document.querySelectorAll('.filtro').forEach(chk => {
             chk.addEventListener('change', aplicarFiltros);
         });
@@ -112,12 +141,10 @@
     function aplicarFiltros() {
         const activos = Array.from(document.querySelectorAll('.filtro')).filter(c => c.checked);
 
-        // Mostrar/ocultar puntos
         marcadores.forEach(m => {
             m.setMap(activos.some(a => a.dataset.tipo === 'punto') ? mapa : null);
         });
 
-        // Mostrar/ocultar zonas de riesgo
         poligonos.forEach(p => {
             const visible = activos.some(a =>
                 a.dataset.tipo === 'riesgo' && a.dataset.nivel === p.nivel
@@ -125,7 +152,6 @@
             p.obj.setMap(visible ? mapa : null);
         });
 
-        // Mostrar/ocultar zonas seguras
         circulos.forEach(c => {
             const visible = activos.some(a =>
                 a.dataset.tipo === 'segura' && a.dataset.categoria === c.categoria
@@ -133,5 +159,10 @@
             c.obj.setMap(visible ? mapa : null);
         });
     }
+
+    // IMPORTANTE para que Google Maps invoque initMap()
+    window.initMap = initMap;
 </script>
+
+
 @endsection

@@ -20,32 +20,34 @@
 
         const zonas = @json($seguras);
 
+        const infoWindow = new google.maps.InfoWindow();
+
         zonas.forEach(zona => {
             const centro = new google.maps.LatLng(parseFloat(zona.latitud), parseFloat(zona.longitud));
-            
+
             const colores = {
                 PUBLICA: {
-                    stroke: "#007BFF",     // azul
+                    stroke: "#007BFF",
                     fill: "#A3C9FF"
                 },
                 PRIVADA: {
-                    stroke: "#800080",     // púrpura
+                    stroke: "#800080",
                     fill: "#D8BFD8"
                 }
             };
 
-            const tipo = zona.tipo_seguridad.toUpperCase(); // por si viene en minúscula
+            const tipo = zona.tipo_seguridad.toUpperCase();
             const color = colores[tipo] || { stroke: "#666", fill: "#CCC" };
 
             // Marcador
-            new google.maps.Marker({
+            const marcador = new google.maps.Marker({
                 position: centro,
                 map: mapa,
                 title: zona.nombre
             });
 
-            // Círculo con color dinámico
-            new google.maps.Circle({
+            // Círculo
+            const circulo = new google.maps.Circle({
                 strokeColor: color.stroke,
                 strokeOpacity: 0.8,
                 strokeWeight: 2,
@@ -55,9 +57,30 @@
                 center: centro,
                 radius: parseFloat(zona.radio)
             });
+
+            // Contenido del InfoWindow
+            const contenido = `
+                <strong>${zona.nombre}</strong><br>
+                Tipo: ${zona.tipo_seguridad}<br>
+                Radio: ${zona.radio} metros
+            `;
+
+            // Click en el marcador
+            marcador.addListener('click', () => {
+                infoWindow.setContent(contenido);
+                infoWindow.open(mapa, marcador);
+            });
+
+            // Click en el círculo
+            circulo.addListener('click', (e) => {
+                infoWindow.setContent(contenido);
+                infoWindow.setPosition(e.latLng);
+                infoWindow.open(mapa);
+            });
         });
     }
 </script>
+
 
 
 @endsection
