@@ -19,7 +19,7 @@
 <table class="table table-bordered table-striped table-hover">
     <thead class="table-dark">
         <tr>
-            <th>#</th>
+            <th>Id</th>
             <th>Nombre</th>
             <th>Tipo</th>
             <th>Radio (m)</th>
