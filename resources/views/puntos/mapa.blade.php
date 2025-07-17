@@ -5,7 +5,7 @@
 <br>
 <div id="mapa-espacios" style="border:2px solid black; height:500px; width:100%;"></div>
 
-<!-- funcionalidad google maps -->
+<!-- define la función antes de cargar Google Maps -->
 <script>
     window.initMap = function () {
         const coordenadaInicial = new google.maps.LatLng(-0.9374805, -78.6161327);
